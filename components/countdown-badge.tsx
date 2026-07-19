@@ -30,7 +30,7 @@ export function CountdownBadge({ endTime }: { endTime: string }) {
   }, [endTime]);
 
   return (
-    <span className="inline-block rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+    <span className="inline-block rounded-sm border border-accent bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
       {label ?? "…"}
     </span>
   );

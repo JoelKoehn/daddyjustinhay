@@ -87,7 +87,7 @@ export function BankLinkButton({ email }: { email: string | null | undefined }) 
 
   if (status === "success") {
     return (
-      <p className="text-sm text-emerald-600">
+      <p className="text-sm text-success">
         Bank account linked! Refresh this page if the status below doesn&apos;t update.
       </p>
     );
@@ -99,11 +99,11 @@ export function BankLinkButton({ email }: { email: string | null | undefined }) 
         type="button"
         onClick={handleClick}
         disabled={status === "loading"}
-        className="rounded-md bg-zinc-900 px-4 py-2 text-sm text-white disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900"
+        className="rounded-sm bg-accent px-4 py-2 text-sm font-heading uppercase tracking-wide text-accent-foreground transition-colors hover:bg-accent-hover disabled:opacity-50"
       >
         {status === "loading" ? "Connecting…" : "Link your bank account"}
       </button>
-      {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+      {error && <p className="mt-2 text-sm text-danger">{error}</p>}
     </div>
   );
 }

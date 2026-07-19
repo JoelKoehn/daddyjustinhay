@@ -51,7 +51,7 @@ export default async function LotPage({
               key={item.url}
               src={item.url}
               controls
-              className="col-span-2 aspect-video w-full rounded-lg bg-zinc-100 sm:col-span-3 dark:bg-zinc-900"
+              className="col-span-2 aspect-video w-full rounded-sm bg-background-elevated sm:col-span-3"
             />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
@@ -59,23 +59,21 @@ export default async function LotPage({
               key={item.url}
               src={item.url}
               alt={lot.title}
-              className="aspect-square w-full rounded-lg object-cover"
+              className="aspect-square w-full rounded-sm object-cover"
             />
           ),
         )}
       </div>
 
-      <h1 className="mt-6 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
+      <h1 className="mt-6 font-heading text-3xl font-semibold uppercase tracking-wide text-foreground">
         {lot.title}
       </h1>
-      <p className="mt-1 text-zinc-600 dark:text-zinc-400">
+      <p className="mt-1 text-muted">
         {lot.hay_type} · {lot.region}
       </p>
 
       {lot.description && (
-        <p className="mt-6 whitespace-pre-line text-zinc-700 dark:text-zinc-300">
-          {lot.description}
-        </p>
+        <p className="mt-6 whitespace-pre-line text-foreground/90">{lot.description}</p>
       )}
 
       <LotLive

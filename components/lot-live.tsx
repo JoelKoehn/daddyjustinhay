@@ -101,22 +101,19 @@ export function LotLive({
   return (
     <div>
       <div className="mt-4 flex items-center gap-4">
-        <span className="text-3xl font-bold text-zinc-900 dark:text-zinc-50">
+        <span className="font-heading text-3xl font-semibold text-foreground">
           ${currentPrice}
         </span>
         <CountdownBadge endTime={endTime} />
       </div>
 
-      <div className="mt-6 rounded-lg border border-zinc-200 p-4 dark:border-zinc-800">
+      <div className="mt-6 rounded-sm border border-border bg-background-elevated p-4">
         {hasEnded ? (
-          <p className="text-sm text-zinc-500">This auction has ended.</p>
+          <p className="text-sm text-muted">This auction has ended.</p>
         ) : isSignedIn ? (
           <form onSubmit={placeBid} className="flex flex-wrap items-end gap-3">
             <div>
-              <label
-                htmlFor="amount"
-                className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-              >
+              <label htmlFor="amount" className="block text-sm font-medium text-muted">
                 Your bid (min ${minBid})
               </label>
               <input
@@ -126,43 +123,37 @@ export function LotLive({
                 min={minBid}
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="mt-1 w-40 rounded-md border border-zinc-300 px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900"
+                className="mt-1 w-40 rounded-sm border border-border bg-background px-3 py-2 text-foreground"
               />
             </div>
             <button
               type="submit"
               disabled={isPending}
-              className="rounded-md bg-zinc-900 px-4 py-2 text-white disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900"
+              className="rounded-sm bg-accent px-4 py-2 font-heading uppercase tracking-wide text-accent-foreground transition-colors hover:bg-accent-hover disabled:opacity-50"
             >
               {isPending ? "Placing bid…" : "Place bid"}
             </button>
           </form>
         ) : (
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            <Link href="/login" className="font-medium underline">
+          <p className="text-sm text-muted">
+            <Link href="/login" className="font-medium text-accent underline">
               Sign in
             </Link>{" "}
             to place a bid.
           </p>
         )}
-        {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+        {error && <p className="mt-2 text-sm text-danger">{error}</p>}
       </div>
 
-      <h2 className="mt-10 text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+      <h2 className="mt-10 font-heading text-lg font-semibold uppercase tracking-wide text-foreground">
         Bid history
       </h2>
-      {!bids.length && (
-        <p className="mt-2 text-sm text-zinc-500">No bids yet — be the first.</p>
-      )}
-      <ul className="mt-2 divide-y divide-zinc-200 dark:divide-zinc-800">
+      {!bids.length && <p className="mt-2 text-sm text-muted">No bids yet — be the first.</p>}
+      <ul className="mt-2 divide-y divide-border">
         {bids.map((bid) => (
           <li key={bid.id} className="flex justify-between py-2 text-sm">
-            <span className="text-zinc-600 dark:text-zinc-400">
-              Bidder #{bid.bidder_id.slice(0, 4).toUpperCase()}
-            </span>
-            <span className="font-medium text-zinc-900 dark:text-zinc-50">
-              ${bid.amount}
-            </span>
+            <span className="text-muted">Bidder #{bid.bidder_id.slice(0, 4).toUpperCase()}</span>
+            <span className="font-medium text-foreground">${bid.amount}</span>
           </li>
         ))}
       </ul>
