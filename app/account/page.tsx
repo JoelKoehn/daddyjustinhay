@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { logout } from "@/app/lib/actions/auth";
+import { BankLinkButton } from "@/components/bank-link-button";
 
 export default async function AccountPage() {
   const supabase = await createClient();
@@ -37,6 +38,12 @@ export default async function AccountPage() {
           <dd>{profile?.bank_linked ? "Yes" : "Not yet"}</dd>
         </div>
       </dl>
+
+      {!profile?.bank_linked && (
+        <div className="mt-6">
+          <BankLinkButton email={user.email} />
+        </div>
+      )}
 
       <form action={logout} className="mt-8">
         <button type="submit" className="text-sm underline">
